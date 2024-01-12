@@ -67,22 +67,14 @@ namespace CSharp_AzureDevopsNotifier.Helpers
         /// <param name="workItemType"></param>
         /// <param name="filters"></param>
         /// <returns>List of WorkItems</returns>
-        public static List<WorkItem> GetWorkItems(WorkItemTrackingHttpClient workItemClient, IList<AzureDevOpsFilter> filters)
+        public static List<WorkItem> GetWorkItems(WorkItemTrackingHttpClient workItemClient, IList<string> filters)
         {
             // Define a Wiql query to retrieve Bugs
-            StringBuilder wiql = new();
-            wiql.Append("SELECT [System.Id], [System.Title], [System.State], [System.CreatedDate] ");
-            wiql.Append($"FROM workitems ");
-            wiql.Append($"WHERE {filters[0].Field} {filters[0].Operator} {filters[0].Value}");
-
-            foreach (var filter in filters.Skip(1))
-            {
-                wiql.Append($"AND {filter.Field} {filter.Operator} {filter.Value} ");
-            }
-            wiql.Append("ORDER BY [System.CreatedDate] DESC");
+            string wiql = "SELECT [System.Id], [System.Title], [System.State], [System.CreatedDate] FROM workitems " +
+                $"WHERE {string.Join(" And ", filters)} ORDER BY [System.CreatedDate] DESC";
 
             // Execute the query to get the list of Bugs
-            WorkItemQueryResult queryResult = workItemClient.QueryByWiqlAsync(new Wiql { Query = wiql.ToString() }).Result;
+            WorkItemQueryResult queryResult = workItemClient.QueryByWiqlAsync(new Wiql { Query = wiql }).Result;
             List<WorkItemReference> workItemReferences = queryResult.WorkItems.ToList();
 
             // Retrieve the detailed information for each Bug

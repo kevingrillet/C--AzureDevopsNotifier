@@ -33,10 +33,7 @@ Edit `Configurations\AzureDevOpsSettings.json`:
 - `Queries` ajoutera des éléments qui ne sont pas dans le dossier dans une catégorie séparée:
   - For WorkItems
     - `"Type": 0`
-    - `Filters` [Wiql where condition](<https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#where-clause>)
-	  - `Field`
-	  - `Operator`
-	  - `Value`
+    - `Filters` [Array of Wiql where condition](<https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#where-clause>)
   - For PR
     - `"Type": 1`
 	- `RepositoryName` 
@@ -52,21 +49,9 @@ Edit `Configurations\AzureDevOpsSettings.json`:
   "Queries": [
     {
       "Filters": [
-        {
-          "Field": "[System.WorkItemType]",
-          "Operator": "=",
-          "Value": "'Bug'"
-        },
-        {
-          "Field": "[System.TeamProject]",
-          "Operator": "=",
-          "Value": "'ProjectName'"
-        },
-        {
-          "Field": "[System.State]",
-          "Operator": "<>",
-          "Value": "'Closed'"
-        }
+        "[System.WorkItemType] = 'Bug'",
+        "[System.TeamProject] = 'ProjectName'",
+        "[System.State] <> 'Closed'"
       ],
       "Type": 0
     },

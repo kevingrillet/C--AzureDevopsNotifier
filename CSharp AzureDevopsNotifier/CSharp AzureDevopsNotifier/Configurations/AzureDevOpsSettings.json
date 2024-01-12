@@ -5,21 +5,9 @@
   "Queries": [
     {
       "Filters": [
-        {
-          "Field": "[System.WorkItemType]",
-          "Operator": "=",
-          "Value": "'Bug'"
-        },
-        {
-          "Field": "[System.TeamProject]",
-          "Operator": "=",
-          "Value": "'ProjectName'"
-        },
-        {
-          "Field": "[System.State]",
-          "Operator": "<>",
-          "Value": "'Closed'"
-        }
+        "[System.WorkItemType] = 'Bug'",
+        "[System.TeamProject] = 'ProjectName'",
+        "[System.State] <> 'Closed'"
       ],
       "Type": 0
     },

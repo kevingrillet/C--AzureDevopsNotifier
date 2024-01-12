@@ -12,7 +12,7 @@
         /// Use to create wiql conditions to query WorkItems
         /// </summary>
         /// <remarks>Works for: AzureDevopsQueryType.WorkItem</remarks>
-        public List<AzureDevOpsFilter> Filters { get; set; }
+        public List<string> Filters { get; set; }
 
         /// <summary>
         /// Use to specify which repository will be used to query Git
