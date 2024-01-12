@@ -5,9 +5,10 @@ namespace CSharp_AzureDevopsNotifier.Forms
 {
     public class TrayApplicationContext : ApplicationContext
     {
-        private const string _pathConfig = @"Configurations\config.json";
+        private const string _pathConfig = @"Configurations\AzureDevOpsSettings.json";
         private readonly NotifyIcon _notificationIcon;
-        private Settings _settings;
+        private AzureDevOpsManager _manager;
+        private AzureDevOpsSettings _settings;
 
         public TrayApplicationContext()
         {
@@ -51,7 +52,7 @@ namespace CSharp_AzureDevopsNotifier.Forms
         private void Refresh(object sender, EventArgs e)
         {
             // Load config file
-            _settings = JsonHelpers<Settings>.Load(_pathConfig);
+            _settings = JsonHelpers<AzureDevOpsSettings>.Load(_pathConfig);
 
             // Set Tray icon
             _notificationIcon.Icon = new Icon(Path.Combine("Ressources", "Microsoft-Azure.ico"));
@@ -62,11 +63,13 @@ namespace CSharp_AzureDevopsNotifier.Forms
 
             // Static bottom menus
             contextMenuStrip.Items.AddRange(new ToolStripItem[] {
-                    new ToolStripSeparator(),
-                    new ToolStripMenuItem(nameof(Refresh), null, new EventHandler(Refresh)),
-                    new ToolStripMenuItem(nameof(Edit), null, new EventHandler(Edit)),
+                    //new ToolStripMenuItem(nameof(Refresh), null, new EventHandler(Refresh)),
+                    //new ToolStripMenuItem(nameof(Edit), null, new EventHandler(Edit)),
                     new ToolStripMenuItem(nameof(Exit), null, new EventHandler(Exit)),
                 });
+
+            _manager = new AzureDevOpsManager(_settings);
+            _ = _manager.RunAsync();
         }
     }
 }

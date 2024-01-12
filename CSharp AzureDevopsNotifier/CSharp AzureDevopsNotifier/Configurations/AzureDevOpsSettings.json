@@ -1,0 +1,31 @@
+﻿{
+  "OrganizationUrl": "https://dev.azure.com/[OrganizationUrl]/",
+  "PersonalAccessToken": "PersonalAccessToken",
+  "ProjectName": "ProjectName",
+  "Queries": [
+    {
+      "Filters": [
+        {
+          "Field": "[System.WorkItemType]",
+          "Operator": "=",
+          "Value": "'Bug'"
+        },
+        {
+          "Field": "[System.TeamProject]",
+          "Operator": "=",
+          "Value": "'ProjectName'"
+        },
+        {
+          "Field": "[System.State]",
+          "Operator": "<>",
+          "Value": "'Closed'"
+        }
+      ],
+      "Type": 0
+    },
+    {
+      "RepositoryName": "RepositoryName",
+      "Type": 1
+    }
+  ]
+}
