@@ -2,15 +2,20 @@
 
 namespace CSharp_AzureDevopsNotifier.Helpers
 {
+    /// <summary>
+    /// Provides helper methods for showing toast notifications.
+    /// </summary>
+    /// <remarks>
+    /// This class is specifically designed for Windows 10/11 operating systems.
+    /// </remarks>
     public static class ToastHelpers
     {
         /// <summary>
-        /// Show a toast notification
+        /// Shows a toast notification with the specified title, description, and URL.
         /// </summary>
-        /// <remarks>Only works on W10/11</remarks>
-        /// <param name="title">Title</param>
-        /// <param name="description">Description</param>
-        /// <param name="url">Url on click</param>
+        /// <param name="title">The title of the toast notification.</param>
+        /// <param name="description">The description of the toast notification.</param>
+        /// <param name="url">The URL to open when the toast notification is clicked.</param>
         public static void ShowToastNotification(string title, string description, string url)
         {
             new ToastContentBuilder()

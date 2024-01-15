@@ -1,5 +1,8 @@
 ﻿namespace CSharp_AzureDevopsNotifier.Entities
 {
+    /// <summary>
+    /// Represents a class that holds storage information.
+    /// </summary>
     public class StorageInfos
     {
         public List<int> DisplayedPrIds { get; set; }

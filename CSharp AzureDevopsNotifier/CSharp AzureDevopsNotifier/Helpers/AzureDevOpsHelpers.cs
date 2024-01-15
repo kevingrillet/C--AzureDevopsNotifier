@@ -2,7 +2,6 @@
 using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
-using System.Text;
 
 namespace CSharp_AzureDevopsNotifier.Helpers
 {
@@ -21,17 +20,8 @@ namespace CSharp_AzureDevopsNotifier.Helpers
                 // Check if the item ID is not in the list of displayed IDs
                 if (!displayedItemIds.Contains(GetItemId(item)))
                 {
-                    var name = GetItemName(item);
-                    var url = GetItemUrl(item, settings, query);
-
-                    // Display the item information in the console
-                    Console.WriteLine($"New {typeof(TType).Name}:");
-                    Console.WriteLine($"  ID: {GetItemId(item)}");
-                    Console.WriteLine($"  Name: {name}");
-                    Console.WriteLine($"  URL: {url}");
-
                     // Display the item information as a toast notification
-                    ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", name, url);
+                    ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", GetItemName(item), GetItemUrl(item, settings, query));
 
                     // Add the item ID to the list of displayed IDs
                     displayedItemIds.Add(GetItemId(item));

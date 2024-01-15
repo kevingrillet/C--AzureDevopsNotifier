@@ -6,16 +6,14 @@ namespace CSharp_AzureDevopsNotifier
 {
     public class AzureDevOpsManager
     {
-        private readonly AzureDevOpsClient _AzureDevOpsClient;
-        private readonly AzureDevOpsSettings _settings;
         private readonly StorageInfos _storageInfos;
+        private AzureDevOpsClient _AzureDevOpsClient;
         private bool _running;
+        private AzureDevOpsSettings _settings;
 
         public AzureDevOpsManager()
         {
-            _settings ??= JsonHelpers<AzureDevOpsSettings>.Load("Configurations/AzureDevOpsSettings.json");
-            _AzureDevOpsClient = new AzureDevOpsClient(_settings);
-            _running = false;
+            Update(_settings);
             _storageInfos = JsonHelpers<StorageInfos>.Load("Configurations/StorageInfos.json");
         }
 
@@ -37,8 +35,8 @@ namespace CSharp_AzureDevopsNotifier
             while (_running)
             {
                 Run();
-                // Wait for 5 minutes before the next check
-                await Task.Delay(5 * 60 * 1000);
+                // Wait for X minutes before the next check
+                await Task.Delay(_settings.Delay * 60 * 1000);
             }
         }
 
@@ -47,9 +45,16 @@ namespace CSharp_AzureDevopsNotifier
             _running = false;
         }
 
+        public void Update(AzureDevOpsSettings azureDevOpsSettings)
+        {
+            _settings = azureDevOpsSettings ?? JsonHelpers<AzureDevOpsSettings>.Load("Configurations/AzureDevOpsSettings.json");
+            _AzureDevOpsClient = new AzureDevOpsClient(_settings);
+            _running = false;
+        }
+
         private void QueryGit()
         {
-            foreach (var query in _settings.Queries.Where(q => q.Type == AzureDevopsQueryType.Git))
+            foreach (var query in _settings.Queries.Where(q => q.Running && q.Type == AzureDevopsQueryType.Git))
             {
                 var prs = AzureDevOpsHelpers.GetNewPullRequests(_AzureDevOpsClient.GetGitClient(), _settings.ProjectName, query.RepositoryName);
                 AzureDevOpsHelpers.DisplayNewItems(prs, _storageInfos.DisplayedPrIds, _settings, query);
@@ -58,7 +63,7 @@ namespace CSharp_AzureDevopsNotifier
 
         private void QueryWorkItems()
         {
-            foreach (var query in _settings.Queries.Where(q => q.Type == AzureDevopsQueryType.WorkItem))
+            foreach (var query in _settings.Queries.Where(q => q.Running && q.Type == AzureDevopsQueryType.WorkItem))
             {
                 var workItems = AzureDevOpsHelpers.GetWorkItems(_AzureDevOpsClient.GetWorkItemClient(), query.Filters);
                 AzureDevOpsHelpers.DisplayNewItems(workItems, _storageInfos.DisplayedWorkItemsIds, _settings);

@@ -30,37 +30,48 @@ C# AzureDevops Notifier (PR, WorkItems -> Bugs, ...)
 
 Edit `Configurations\AzureDevOpsSettings.json`:
 
-- `Queries` ajoutera des éléments qui ne sont pas dans le dossier dans une catégorie séparée:
-  - For WorkItems
-    - `"Type": 0`
-    - `Filters` [Array of Wiql where condition](<https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#where-clause>)
-  - For PR
-    - `"Type": 1`
-	- `RepositoryName` 
+- `Delay` Delay between calls
 - `OrganizationUrl` The name of the Azure DevOps organization
 - `PersonalAccessToken`
 - `ProjectName` Project name
+- `Queries` ajoutera des éléments qui ne sont pas dans le dossier dans une catégorie séparée:
+  - For WorkItems
+    - `Type: 0`
+	- `Name`
+    - `Filters` [Array of Wiql where condition](<https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#where-clause>)
+	- `Running`
+  - For PR
+    - `Type: 1`
+	- `Name`
+	- `RepositoryName` 
+	- `Running`
 
 ```json
 {
-  "OrganizationUrl": "https://dev.azure.com/[OrganizationUrl]/",
-  "PersonalAccessToken": "PersonalAccessToken",
-  "ProjectName": "ProjectName",
-  "Queries": [
-    {
-      "Filters": [
-        "[System.WorkItemType] = 'Bug'",
-        "[System.TeamProject] = 'ProjectName'",
-        "[System.State] <> 'Closed'"
-      ],
-      "Type": 0
-    },
-    {
-      "RepositoryName": "RepositoryName",
-      "Type": 1
-    }
-  ]
+    "Delay": 5,
+    "OrganizationUrl": "https://dev.azure.com/[OrganizationUrl]/",
+    "PersonalAccessToken": "PersonalAccessToken",
+    "ProjectName": "ProjectName",
+    "Queries": [
+        {
+            "Filters": [
+                "[System.WorkItemType] = 'Bug'",
+                "[System.TeamProject] = 'ProjectName'",
+                "[System.State] <> 'Closed'"
+            ],
+            "Name": "Open Bugs",
+            "Running": true,
+            "Type": 0
+        },
+        {
+            "Name": "PRs",
+            "RepositoryName": "RepositoryName",
+            "Running": true,
+            "Type": 1
+        }
+    ]
 }
+
 ```
 
 ## Licence

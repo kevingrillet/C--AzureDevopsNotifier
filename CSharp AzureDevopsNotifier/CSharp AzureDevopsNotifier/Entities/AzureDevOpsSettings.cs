@@ -1,7 +1,15 @@
 ﻿namespace CSharp_AzureDevopsNotifier.Entities
 {
+    /// <summary>
+    /// Represents the settings for Azure DevOps integration.
+    /// </summary>
     public class AzureDevOpsSettings
     {
+        /// <summary>
+        /// Delay between calls
+        /// </summary>
+        public int Delay { get; set; }
+
         /// <summary>
         /// https://dev.azure.com/{MyOrganisation}/
         /// </summary>
@@ -21,6 +29,7 @@
 
         public AzureDevOpsSettings()
         {
+            Delay = 0;
             OrganizationUrl = string.Empty;
             PersonalAccessToken = string.Empty;
             ProjectName = string.Empty;
