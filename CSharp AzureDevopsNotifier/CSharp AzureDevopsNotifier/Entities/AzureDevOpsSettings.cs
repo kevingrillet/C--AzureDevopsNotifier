@@ -1,4 +1,6 @@
-﻿namespace CSharp_AzureDevopsNotifier.Entities
+﻿using System.Collections.Generic;
+
+namespace CSharp_AzureDevopsNotifier.Entities
 {
     /// <summary>
     /// Represents the settings for Azure DevOps integration.

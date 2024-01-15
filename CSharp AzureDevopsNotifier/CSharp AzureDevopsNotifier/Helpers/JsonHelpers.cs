@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace CSharp_TrayShortcut.Helpers

@@ -1,5 +1,8 @@
 ﻿using CSharp_AzureDevopsNotifier.Entities;
 using CSharp_TrayShortcut.Helpers;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CSharp_AzureDevopsNotifier.Forms
 {
@@ -65,7 +68,7 @@ namespace CSharp_AzureDevopsNotifier.Forms
         private void SetTrayIcon()
         {
             // Set Tray icon
-            _notificationIcon.Icon = new Icon(Path.Combine("Ressources", "Microsoft-Azure.ico"));
+            _notificationIcon.Icon = new Icon(@"Ressources/Icons/Microsoft-Azure.ico");
 
             // Update menus
             var contextMenuStrip = _notificationIcon.ContextMenuStrip;

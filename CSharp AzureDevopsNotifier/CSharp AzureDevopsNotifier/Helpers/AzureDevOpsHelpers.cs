@@ -2,6 +2,9 @@
 using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp_AzureDevopsNotifier.Helpers
 {

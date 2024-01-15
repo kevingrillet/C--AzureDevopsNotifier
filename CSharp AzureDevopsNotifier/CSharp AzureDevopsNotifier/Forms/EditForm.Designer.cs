@@ -1,4 +1,7 @@
-﻿namespace CSharp_AzureDevopsNotifier
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace CSharp_AzureDevopsNotifier
 {
     partial class EditForm
     {

@@ -1,6 +1,8 @@
 ﻿using CSharp_AzureDevopsNotifier.Entities;
 using CSharp_AzureDevopsNotifier.Helpers;
 using CSharp_TrayShortcut.Helpers;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CSharp_AzureDevopsNotifier
 {
@@ -14,7 +16,7 @@ namespace CSharp_AzureDevopsNotifier
         public AzureDevOpsManager()
         {
             Update(_settings);
-            _storageInfos = JsonHelpers<StorageInfos>.Load("Configurations/StorageInfos.json");
+            _storageInfos = JsonHelpers<StorageInfos>.Load(@"Configurations/StorageInfos.json");
         }
 
         public AzureDevOpsManager(AzureDevOpsSettings azureDevOpsSettings) : this()
@@ -47,7 +49,7 @@ namespace CSharp_AzureDevopsNotifier
 
         public void Update(AzureDevOpsSettings azureDevOpsSettings)
         {
-            _settings = azureDevOpsSettings ?? JsonHelpers<AzureDevOpsSettings>.Load("Configurations/AzureDevOpsSettings.json");
+            _settings = azureDevOpsSettings ?? JsonHelpers<AzureDevOpsSettings>.Load(@"Configurations/AzureDevOpsSettings.json");
             _AzureDevOpsClient = new AzureDevOpsClient(_settings);
             _running = false;
         }

@@ -6,12 +6,13 @@
     <RootNamespace>CSharp_AzureDevopsNotifier</RootNamespace>
     <Nullable>disable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>Ressources\Microsoft-Azure.ico</ApplicationIcon>
+    <ApplicationIcon>Ressources\Icons\Microsoft-Azure.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Ressources\Microsoft-Azure.ico" />
+    <Content Include="Ressources\Icons\Microsoft-Azure.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -29,12 +30,16 @@
     <None Update="Configurations\StorageInfos.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Ressources\Microsoft-Azure.ico">
+    <None Update="Ressources\Icons\Microsoft-Azure.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Ressources\Microsoft-Azure.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ressources\Sounds\" />
   </ItemGroup>
 
 </Project>

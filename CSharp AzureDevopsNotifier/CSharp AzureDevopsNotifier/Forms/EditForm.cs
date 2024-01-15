@@ -1,6 +1,9 @@
 using CSharp_AzureDevopsNotifier.Entities;
 using CSharp_TrayShortcut.Helpers;
+using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace CSharp_AzureDevopsNotifier
 {

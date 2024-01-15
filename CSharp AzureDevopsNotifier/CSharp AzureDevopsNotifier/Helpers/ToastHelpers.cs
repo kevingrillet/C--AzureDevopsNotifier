@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 
 namespace CSharp_AzureDevopsNotifier.Helpers
 {
@@ -18,11 +19,14 @@ namespace CSharp_AzureDevopsNotifier.Helpers
         /// <param name="url">The URL to open when the toast notification is clicked.</param>
         public static void ShowToastNotification(string title, string description, string url)
         {
-            new ToastContentBuilder()
-                .AddText(title)
-                .AddText(description)
-                .SetProtocolActivation(new Uri(url))
-                .Show();
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException(nameof(title));
+            }
+            var toast = new ToastContentBuilder().AddText(title);
+            if (!string.IsNullOrWhiteSpace(description)) toast.AddText(description);
+            if (!string.IsNullOrWhiteSpace(url)) toast.SetProtocolActivation(new Uri(url));
+            toast.Show();
         }
     }
 }

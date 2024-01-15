@@ -37,14 +37,14 @@ Edit `Configurations\AzureDevOpsSettings.json`:
 - `Queries` ajoutera des éléments qui ne sont pas dans le dossier dans une catégorie séparée:
   - For WorkItems
     - `Type: 0`
-	- `Name`
+    - `Name`
     - `Filters` [Array of Wiql where condition](<https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#where-clause>)
-	- `Running`
+    - `Running`
   - For PR
     - `Type: 1`
-	- `Name`
-	- `RepositoryName` 
-	- `Running`
+    - `Name`
+    - `RepositoryName`
+    - `Running`
 
 ```json
 {

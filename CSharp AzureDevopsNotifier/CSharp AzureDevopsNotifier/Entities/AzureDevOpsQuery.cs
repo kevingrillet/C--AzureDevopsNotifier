@@ -1,4 +1,6 @@
-﻿namespace CSharp_AzureDevopsNotifier.Entities
+﻿using System.Collections.Generic;
+
+namespace CSharp_AzureDevopsNotifier.Entities
 {
     public enum AzureDevopsQueryType
     {
@@ -15,7 +17,7 @@
         /// Used to create WIQL conditions to query work items.
         /// </summary>
         /// <remarks>Works for: AzureDevopsQueryType.WorkItem</remarks>
-        public List<string> Filters { get; set; }
+        public IList<string> Filters { get; set; }
 
         /// <summary>
         /// Name or description of the query.
@@ -36,6 +38,7 @@
         /// </value>
         public bool Running { get; set; }
 
+        public string SoundPath { get; set; }
         public AzureDevopsQueryType Type { get; set; }
 
         public AzureDevOpsQuery()
@@ -44,6 +47,7 @@
             Name = string.Empty;
             RepositoryName = string.Empty;
             Running = false;
+            SoundPath = string.Empty;
         }
     }
 }
