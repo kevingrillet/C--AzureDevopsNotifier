@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace CSharp_TrayShortcut.Helpers
@@ -12,11 +11,11 @@ namespace CSharp_TrayShortcut.Helpers
     internal static class JsonHelpers<TType> where TType : class, new()
     {
         /// <summary>
-        /// Deserialise from path into TType
+        /// Deserializes JSON data from a file into an object of type TType.
         /// </summary>
-        /// <param name="pathConfig">Path to config file</param>
-        /// <returns>Deserialized object</returns>
-        /// <exception cref="ArgumentNullException">pathConfig is required</exception>
+        /// <param name="pathConfig">The path to the config file.</param>
+        /// <returns>The deserialized object.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when pathConfig is null or empty.</exception>
         public static TType Load(string pathConfig)
         {
             if (string.IsNullOrWhiteSpace(pathConfig))
@@ -26,34 +25,32 @@ namespace CSharp_TrayShortcut.Helpers
 
             if (File.Exists(pathConfig))
             {
-                return JsonConvert.DeserializeObject<TType>(File.ReadAllText(pathConfig));
+                string json = File.ReadAllText(pathConfig);
+                return JsonConvert.DeserializeObject<TType>(json);
             }
-            else
-            {
-                // Handle file not found error
-                return null;
-            }
+
+            throw new FileNotFoundException("Config file not found.", pathConfig);
         }
 
         /// <summary>
-        /// Save config into file
+        /// Serializes the config object into JSON data and saves it to a file.
         /// </summary>
-        /// <param name="pathConfig">Path to config file</param>
-        /// <param name="config">Object to save</param>
-        /// <exception cref="ArgumentNullException">pathConfig &amp; config are required</exception>
+        /// <param name="pathConfig">The path to the config file.</param>
+        /// <param name="config">The object to save.</param>
+        /// <exception cref="ArgumentNullException">Thrown when pathConfig or config is null.</exception>
         public static void Save(string pathConfig, TType config)
         {
-            if (string.IsNullOrWhiteSpace(pathConfig))
+            if (string.IsNullOrWhiteSpace(pathConfig) || !Path.IsPathFullyQualified(pathConfig))
             {
                 throw new ArgumentNullException(nameof(pathConfig));
             }
 
             ArgumentNullException.ThrowIfNull(config);
 
-            string serializedConfig = JsonConvert.SerializeObject(config);
-            if (serializedConfig != null)
+            string json = JsonConvert.SerializeObject(config);
+            if (json != null)
             {
-                File.WriteAllBytes(pathConfig, Encoding.UTF8.GetBytes(serializedConfig));
+                File.WriteAllText(pathConfig, json);
             }
         }
     }

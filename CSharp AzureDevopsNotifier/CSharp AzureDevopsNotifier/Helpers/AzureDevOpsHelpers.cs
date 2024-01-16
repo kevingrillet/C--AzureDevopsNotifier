@@ -1,139 +1,105 @@
 ﻿using CSharp_AzureDevopsNotifier.Entities;
+using System;
+using System.Collections.Generic;
 using Microsoft.TeamFoundation.SourceControl.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharp_AzureDevopsNotifier.Helpers
 {
+    /// <summary>
+    /// The <c>AzureDevOpsHelpers</c> class provides helper methods for working with Azure DevOps,
+    /// specifically for displaying new items (pull requests and work items) and retrieving them from Azure DevOps.
+    /// </summary>
     public static class AzureDevOpsHelpers
     {
         /// <summary>
-        /// Display items & show a toast
+        /// Displays new items as toast notifications.
         /// </summary>
-        /// <typeparam name="TType"><see cref="GitPullRequest"/> or <see cref="WorkItem"/></typeparam>
-        /// <param name="items"></param>
-        /// <param name="displayedItemIds"></param>
+        /// <typeparam name="TType">Type of item (GitPullRequest or WorkItem).</typeparam>
+        /// <param name="items">List of items.</param>
+        /// <param name="displayedItemIds">List of displayed item IDs.</param>
+        /// <param name="settings">Azure DevOps settings.</param>
+        /// <param name="query">Azure DevOps query.</param>
         public static void DisplayNewItems<TType>(IList<TType> items, IList<int> displayedItemIds, AzureDevOpsSettings settings, AzureDevOpsQuery query = null)
         {
             foreach (var item in items)
             {
-                // Check if the item ID is not in the list of displayed IDs
-                if (!displayedItemIds.Contains(GetItemId(item)))
-                {
-                    // Display the item information as a toast notification
-                    ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", GetItemName(item), GetItemUrl(item, settings, query));
+                int itemId = GetItemId(item);
 
-                    // Add the item ID to the list of displayed IDs
-                    displayedItemIds.Add(GetItemId(item));
+                if (!displayedItemIds.Contains(itemId))
+                {
+                    string itemName = GetItemName(item);
+                    string itemUrl = GetItemUrl(item, settings, query);
+
+                    ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", itemName, itemUrl);
+
+                    displayedItemIds.Add(itemId);
                 }
             }
         }
 
         /// <summary>
-        /// Retrieve the list of Pull Requests
+        /// Retrieves the list of new pull requests from Azure DevOps.
         /// </summary>
-        /// <param name="gitClient"></param>
-        /// <param name="projectName"></param>
-        /// <param name="repositoryName"></param>
-        /// <returns>List of Pull Requests</returns>
+        /// <param name="gitClient">GitHttpClient instance.</param>
+        /// <param name="projectName">Name of the project.</param>
+        /// <param name="repositoryName">Name of the repository.</param>
+        /// <returns>List of new pull requests.</returns>
         public static List<GitPullRequest> GetNewPullRequests(GitHttpClient gitClient, string projectName, string repositoryName)
         {
-            // Define a search criteria for Pull Requests
             GitPullRequestSearchCriteria prSearchCriteria = new()
             {
                 Status = PullRequestStatus.Active
             };
 
-            // Retrieve the list of Pull Requests
-            List<GitPullRequest> pullRequests = gitClient.GetPullRequestsAsync(projectName, repositoryName, prSearchCriteria).Result;
-
-            return pullRequests;
+            return gitClient.GetPullRequestsAsync(projectName, repositoryName, prSearchCriteria).Result;
         }
 
         /// <summary>
-        /// Retrieve the detailed information for each WorkItem
+        /// Retrieves the list of new work items from Azure DevOps.
         /// </summary>
-        /// <param name="workItemClient"></param>
-        /// <param name="workItemType"></param>
-        /// <param name="filters"></param>
-        /// <returns>List of WorkItems</returns>
+        /// <param name="workItemClient">WorkItemTrackingHttpClient instance.</param>
+        /// <param name="filters">List of filters.</param>
+        /// <returns>List of new work items.</returns>
         public static List<WorkItem> GetWorkItems(WorkItemTrackingHttpClient workItemClient, IList<string> filters)
         {
-            // Define a Wiql query to retrieve Bugs
-            string wiql = "SELECT [System.Id], [System.Title], [System.State], [System.CreatedDate] FROM workitems " +
-                $"WHERE {string.Join(" And ", filters)} ORDER BY [System.CreatedDate] DESC";
-
-            // Execute the query to get the list of Bugs
+            string wiql = $"SELECT [System.Id], [System.Title], [System.State], [System.CreatedDate] FROM workitems WHERE {string.Join(" And ", filters)} ORDER BY [System.CreatedDate] DESC";
             WorkItemQueryResult queryResult = workItemClient.QueryByWiqlAsync(new Wiql { Query = wiql }).Result;
             List<WorkItemReference> workItemReferences = queryResult.WorkItems.ToList();
 
-            // Retrieve the detailed information for each Bug
-            List<WorkItem> bugs = workItemClient.GetWorkItemsAsync(workItemReferences.Select(w => w.Id)).Result;
-
-            return bugs;
+            return workItemClient.GetWorkItemsAsync(workItemReferences.Select(w => w.Id)).Result;
         }
 
-        /// <summary>
-        /// Implement logic to get the ID of the item
-        /// </summary>
-        /// <typeparam name="TType"><see cref="GitPullRequest"/> or <see cref="WorkItem"/></typeparam>
-        /// <param name="item"></param>
-        /// <returns>URL of the item</returns>
-        /// <exception cref="InvalidOperationException"></exception>
         private static int GetItemId<TType>(TType item)
         {
-            if (item is GitPullRequest)
+            return item switch
             {
-                return (item as GitPullRequest).PullRequestId;
-            }
-            else if (item is WorkItem)
-            {
-                return (item as WorkItem).Id ?? 0;
-            }
-            throw new InvalidOperationException("Unsupported item type");
+                GitPullRequest pr => pr.PullRequestId,
+                WorkItem wi => wi.Id ?? 0,
+                _ => throw new InvalidOperationException("Unsupported item type")
+            };
         }
 
-        /// <summary>
-        /// Implement logic to get the name of the item
-        /// </summary>
-        /// <typeparam name="TType"><see cref="GitPullRequest"/> or <see cref="WorkItem"/></typeparam>
-        /// <param name="item"></param>
-        /// <returns>URL of the item</returns>
-        /// <exception cref="InvalidOperationException"></exception>
         private static string GetItemName<TType>(TType item)
         {
-            if (item is GitPullRequest)
+            return item switch
             {
-                return (item as GitPullRequest).Title;
-            }
-            else if (item is WorkItem)
-            {
-                return (item as WorkItem).Fields["System.Title"].ToString();
-            }
-            throw new InvalidOperationException("Unsupported item type");
+                GitPullRequest pr => pr.Title,
+                WorkItem wi => wi.Fields["System.Title"].ToString(),
+                _ => throw new InvalidOperationException("Unsupported item type")
+            };
         }
 
-        /// <summary>
-        /// Implement logic to get the URL of the item
-        /// </summary>
-        /// <typeparam name="TType"><see cref="GitPullRequest"/> or <see cref="WorkItem"/></typeparam>
-        /// <param name="item"></param>
-        /// <returns>URL of the item</returns>
-        /// <exception cref="InvalidOperationException"></exception>
         private static string GetItemUrl<TType>(TType item, AzureDevOpsSettings settings, AzureDevOpsQuery query)
         {
-            if (item is GitPullRequest)
+            return item switch
             {
-                return $"{settings.OrganizationUrl}/{settings.ProjectName}/_git/{query?.RepositoryName}/pullrequest/{GetItemId(item)}";
-            }
-            else if (item is WorkItem)
-            {
-                return $"{settings.OrganizationUrl}/{settings.ProjectName}/_workitems/edit/{GetItemId(item)}";
-            }
-            throw new InvalidOperationException("Unsupported item type");
+                GitPullRequest => $"{settings.OrganizationUrl}/{settings.ProjectName}/_git/{query?.RepositoryName}/pullrequest/{GetItemId(item)}",
+                WorkItem => $"{settings.OrganizationUrl}/{settings.ProjectName}/_workitems/edit/{GetItemId(item)}",
+                _ => throw new InvalidOperationException("Unsupported item type")
+            };
         }
     }
 }
