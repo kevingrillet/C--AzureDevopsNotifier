@@ -37,8 +37,8 @@ namespace CSharp_AzureDevopsNotifier
             menuStrip1 = new MenuStrip();
             saveToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
-            tabPageAzureDevOpsSettings = new TabPage();
-            tableLayoutPanelAzureDevOpsSettings = new TableLayoutPanel();
+            tabPageSettings = new TabPage();
+            tableLayoutPanelSettings = new TableLayoutPanel();
             labelOrganizationUrl = new Label();
             labelDelay = new Label();
             labelProjectName = new Label();
@@ -49,41 +49,41 @@ namespace CSharp_AzureDevopsNotifier
             numericUpDownDelay = new NumericUpDown();
             tabPageQueries = new TabPage();
             tableLayoutPanelQueries = new TableLayoutPanel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            button3 = new Button();
-            dataGridView1 = new DataGridView();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            flowLayoutPanel3 = new FlowLayoutPanel();
-            button4 = new Button();
-            button5 = new Button();
-            dataGridView2 = new DataGridView();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            comboBox1 = new ComboBox();
-            checkBox1 = new CheckBox();
+            flowLayoutPanelQueriesDetails = new FlowLayoutPanel();
+            buttonQueriesDetailsSave = new Button();
+            dataGridViewQueries = new DataGridView();
+            flowLayoutPanelQueries = new FlowLayoutPanel();
+            buttonQueriesAdd = new Button();
+            buttonQueriesDelete = new Button();
+            tableLayoutPanelQueriesDetails = new TableLayoutPanel();
+            labelName = new Label();
+            labelRunning = new Label();
+            labelType = new Label();
+            labelRepositoryName = new Label();
+            labelFilters = new Label();
+            tableLayoutPanelQueriesFilters = new TableLayoutPanel();
+            dataGridViewQueriesFilters = new DataGridView();
+            flowLayoutPanelQueriesFilters = new FlowLayoutPanel();
+            buttonQueriesFiltersAdd = new Button();
+            buttonQueriesFiltersDelete = new Button();
+            textBoxName = new TextBox();
+            textBoxRepositoryName = new TextBox();
+            comboBoxType = new ComboBox();
+            checkBoxRunning = new CheckBox();
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
-            tabPageAzureDevOpsSettings.SuspendLayout();
-            tableLayoutPanelAzureDevOpsSettings.SuspendLayout();
+            tabPageSettings.SuspendLayout();
+            tableLayoutPanelSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownDelay).BeginInit();
             tabPageQueries.SuspendLayout();
             tableLayoutPanelQueries.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            flowLayoutPanelQueriesDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQueries).BeginInit();
+            flowLayoutPanelQueries.SuspendLayout();
+            tableLayoutPanelQueriesDetails.SuspendLayout();
+            tableLayoutPanelQueriesFilters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQueriesFilters).BeginInit();
+            flowLayoutPanelQueriesFilters.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -104,7 +104,7 @@ namespace CSharp_AzureDevopsNotifier
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPageAzureDevOpsSettings);
+            tabControl1.Controls.Add(tabPageSettings);
             tabControl1.Controls.Add(tabPageQueries);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 24);
@@ -113,44 +113,44 @@ namespace CSharp_AzureDevopsNotifier
             tabControl1.Size = new Size(1264, 657);
             tabControl1.TabIndex = 1;
             // 
-            // tabPageAzureDevOpsSettings
+            // tabPageSettings
             // 
-            tabPageAzureDevOpsSettings.Controls.Add(tableLayoutPanelAzureDevOpsSettings);
-            tabPageAzureDevOpsSettings.Location = new Point(4, 24);
-            tabPageAzureDevOpsSettings.Name = "tabPageAzureDevOpsSettings";
-            tabPageAzureDevOpsSettings.Padding = new Padding(3);
-            tabPageAzureDevOpsSettings.Size = new Size(1256, 629);
-            tabPageAzureDevOpsSettings.TabIndex = 0;
-            tabPageAzureDevOpsSettings.Text = "AzureDevOpsSettings";
-            tabPageAzureDevOpsSettings.UseVisualStyleBackColor = true;
+            tabPageSettings.Controls.Add(tableLayoutPanelSettings);
+            tabPageSettings.Location = new Point(4, 24);
+            tabPageSettings.Name = "tabPageSettings";
+            tabPageSettings.Padding = new Padding(3);
+            tabPageSettings.Size = new Size(1256, 629);
+            tabPageSettings.TabIndex = 0;
+            tabPageSettings.Text = "Settings";
+            tabPageSettings.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanelAzureDevOpsSettings
+            // tableLayoutPanelSettings
             // 
-            tableLayoutPanelAzureDevOpsSettings.ColumnCount = 4;
-            tableLayoutPanelAzureDevOpsSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanelAzureDevOpsSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanelAzureDevOpsSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-            tableLayoutPanelAzureDevOpsSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(labelOrganizationUrl, 1, 1);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(labelDelay, 1, 4);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(labelProjectName, 1, 3);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(labelPersonalAccessToken, 1, 2);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(textBoxOrganizationUrl, 2, 1);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(textBoxProjectName, 2, 3);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(textBoxPersonalAccessToken, 2, 2);
-            tableLayoutPanelAzureDevOpsSettings.Controls.Add(numericUpDownDelay, 2, 4);
-            tableLayoutPanelAzureDevOpsSettings.Dock = DockStyle.Fill;
-            tableLayoutPanelAzureDevOpsSettings.Location = new Point(3, 3);
-            tableLayoutPanelAzureDevOpsSettings.Name = "tableLayoutPanelAzureDevOpsSettings";
-            tableLayoutPanelAzureDevOpsSettings.RowCount = 6;
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanelAzureDevOpsSettings.RowStyles.Add(new RowStyle());
-            tableLayoutPanelAzureDevOpsSettings.Size = new Size(1250, 623);
-            tableLayoutPanelAzureDevOpsSettings.TabIndex = 0;
+            tableLayoutPanelSettings.ColumnCount = 4;
+            tableLayoutPanelSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanelSettings.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelSettings.Controls.Add(labelOrganizationUrl, 1, 1);
+            tableLayoutPanelSettings.Controls.Add(labelDelay, 1, 4);
+            tableLayoutPanelSettings.Controls.Add(labelProjectName, 1, 3);
+            tableLayoutPanelSettings.Controls.Add(labelPersonalAccessToken, 1, 2);
+            tableLayoutPanelSettings.Controls.Add(textBoxOrganizationUrl, 2, 1);
+            tableLayoutPanelSettings.Controls.Add(textBoxProjectName, 2, 3);
+            tableLayoutPanelSettings.Controls.Add(textBoxPersonalAccessToken, 2, 2);
+            tableLayoutPanelSettings.Controls.Add(numericUpDownDelay, 2, 4);
+            tableLayoutPanelSettings.Dock = DockStyle.Fill;
+            tableLayoutPanelSettings.Location = new Point(3, 3);
+            tableLayoutPanelSettings.Name = "tableLayoutPanelSettings";
+            tableLayoutPanelSettings.RowCount = 6;
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelSettings.RowStyles.Add(new RowStyle());
+            tableLayoutPanelSettings.Size = new Size(1250, 623);
+            tableLayoutPanelSettings.TabIndex = 0;
             // 
             // labelOrganizationUrl
             // 
@@ -240,10 +240,10 @@ namespace CSharp_AzureDevopsNotifier
             tableLayoutPanelQueries.ColumnCount = 2;
             tableLayoutPanelQueries.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanelQueries.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanelQueries.Controls.Add(flowLayoutPanel2, 1, 0);
-            tableLayoutPanelQueries.Controls.Add(dataGridView1, 0, 1);
-            tableLayoutPanelQueries.Controls.Add(flowLayoutPanel1, 0, 0);
-            tableLayoutPanelQueries.Controls.Add(tableLayoutPanel1, 1, 1);
+            tableLayoutPanelQueries.Controls.Add(flowLayoutPanelQueriesDetails, 1, 0);
+            tableLayoutPanelQueries.Controls.Add(dataGridViewQueries, 0, 1);
+            tableLayoutPanelQueries.Controls.Add(flowLayoutPanelQueries, 0, 0);
+            tableLayoutPanelQueries.Controls.Add(tableLayoutPanelQueriesDetails, 1, 1);
             tableLayoutPanelQueries.Dock = DockStyle.Fill;
             tableLayoutPanelQueries.Location = new Point(3, 3);
             tableLayoutPanelQueries.Name = "tableLayoutPanelQueries";
@@ -253,227 +253,231 @@ namespace CSharp_AzureDevopsNotifier
             tableLayoutPanelQueries.Size = new Size(1250, 623);
             tableLayoutPanelQueries.TabIndex = 0;
             // 
-            // flowLayoutPanel2
+            // flowLayoutPanelQueriesDetails
             // 
-            flowLayoutPanel2.Controls.Add(button3);
-            flowLayoutPanel2.Dock = DockStyle.Fill;
-            flowLayoutPanel2.Location = new Point(378, 3);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(869, 44);
-            flowLayoutPanel2.TabIndex = 2;
+            flowLayoutPanelQueriesDetails.Controls.Add(buttonQueriesDetailsSave);
+            flowLayoutPanelQueriesDetails.Dock = DockStyle.Fill;
+            flowLayoutPanelQueriesDetails.Location = new Point(378, 3);
+            flowLayoutPanelQueriesDetails.Name = "flowLayoutPanelQueriesDetails";
+            flowLayoutPanelQueriesDetails.Size = new Size(869, 44);
+            flowLayoutPanelQueriesDetails.TabIndex = 2;
             // 
-            // button3
+            // buttonQueriesDetailsSave
             // 
-            button3.Location = new Point(3, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(118, 41);
-            button3.TabIndex = 0;
-            button3.Text = "Save";
-            button3.UseVisualStyleBackColor = true;
+            buttonQueriesDetailsSave.Location = new Point(3, 3);
+            buttonQueriesDetailsSave.Name = "buttonQueriesDetailsSave";
+            buttonQueriesDetailsSave.Size = new Size(118, 41);
+            buttonQueriesDetailsSave.TabIndex = 0;
+            buttonQueriesDetailsSave.Text = "Save";
+            buttonQueriesDetailsSave.UseVisualStyleBackColor = true;
+            buttonQueriesDetailsSave.Click += ButtonQueriesDetailsSave_Click;
             // 
-            // dataGridView1
+            // dataGridViewQueries
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(3, 53);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(369, 567);
-            dataGridView1.TabIndex = 0;
+            dataGridViewQueries.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewQueries.Dock = DockStyle.Fill;
+            dataGridViewQueries.Location = new Point(3, 53);
+            dataGridViewQueries.Name = "dataGridViewQueries";
+            dataGridViewQueries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewQueries.Size = new Size(369, 567);
+            dataGridViewQueries.TabIndex = 0;
+            dataGridViewQueries.SelectionChanged += DataGridViewQueries_SelectionChanged;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelQueries
             // 
-            flowLayoutPanel1.Controls.Add(button1);
-            flowLayoutPanel1.Controls.Add(button2);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 3);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(369, 44);
-            flowLayoutPanel1.TabIndex = 1;
+            flowLayoutPanelQueries.Controls.Add(buttonQueriesAdd);
+            flowLayoutPanelQueries.Controls.Add(buttonQueriesDelete);
+            flowLayoutPanelQueries.Dock = DockStyle.Fill;
+            flowLayoutPanelQueries.Location = new Point(3, 3);
+            flowLayoutPanelQueries.Name = "flowLayoutPanelQueries";
+            flowLayoutPanelQueries.Size = new Size(369, 44);
+            flowLayoutPanelQueries.TabIndex = 1;
             // 
-            // button1
+            // buttonQueriesAdd
             // 
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 41);
-            button1.TabIndex = 0;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            buttonQueriesAdd.Location = new Point(3, 3);
+            buttonQueriesAdd.Name = "buttonQueriesAdd";
+            buttonQueriesAdd.Size = new Size(118, 41);
+            buttonQueriesAdd.TabIndex = 0;
+            buttonQueriesAdd.Text = "Add";
+            buttonQueriesAdd.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonQueriesDelete
             // 
-            button2.Location = new Point(127, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 41);
-            button2.TabIndex = 1;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            buttonQueriesDelete.Location = new Point(127, 3);
+            buttonQueriesDelete.Name = "buttonQueriesDelete";
+            buttonQueriesDelete.Size = new Size(118, 41);
+            buttonQueriesDelete.TabIndex = 1;
+            buttonQueriesDelete.Text = "Delete";
+            buttonQueriesDelete.UseVisualStyleBackColor = true;
+            buttonQueriesDelete.Click += ButtonQueriesDelete_Click;
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanelQueriesDetails
             // 
-            tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel1.Controls.Add(label1, 1, 1);
-            tableLayoutPanel1.Controls.Add(label2, 1, 2);
-            tableLayoutPanel1.Controls.Add(label3, 1, 3);
-            tableLayoutPanel1.Controls.Add(label4, 1, 4);
-            tableLayoutPanel1.Controls.Add(label5, 1, 5);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 2, 5);
-            tableLayoutPanel1.Controls.Add(textBox1, 2, 1);
-            tableLayoutPanel1.Controls.Add(textBox2, 2, 4);
-            tableLayoutPanel1.Controls.Add(comboBox1, 2, 3);
-            tableLayoutPanel1.Controls.Add(checkBox1, 2, 2);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(378, 53);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(869, 567);
-            tableLayoutPanel1.TabIndex = 3;
+            tableLayoutPanelQueriesDetails.ColumnCount = 4;
+            tableLayoutPanelQueriesDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanelQueriesDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanelQueriesDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanelQueriesDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanelQueriesDetails.Controls.Add(labelName, 1, 1);
+            tableLayoutPanelQueriesDetails.Controls.Add(labelRunning, 1, 2);
+            tableLayoutPanelQueriesDetails.Controls.Add(labelType, 1, 3);
+            tableLayoutPanelQueriesDetails.Controls.Add(labelRepositoryName, 1, 4);
+            tableLayoutPanelQueriesDetails.Controls.Add(labelFilters, 1, 5);
+            tableLayoutPanelQueriesDetails.Controls.Add(tableLayoutPanelQueriesFilters, 2, 5);
+            tableLayoutPanelQueriesDetails.Controls.Add(textBoxName, 2, 1);
+            tableLayoutPanelQueriesDetails.Controls.Add(textBoxRepositoryName, 2, 4);
+            tableLayoutPanelQueriesDetails.Controls.Add(comboBoxType, 2, 3);
+            tableLayoutPanelQueriesDetails.Controls.Add(checkBoxRunning, 2, 2);
+            tableLayoutPanelQueriesDetails.Dock = DockStyle.Fill;
+            tableLayoutPanelQueriesDetails.Location = new Point(378, 53);
+            tableLayoutPanelQueriesDetails.Name = "tableLayoutPanelQueriesDetails";
+            tableLayoutPanelQueriesDetails.RowCount = 6;
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelQueriesDetails.RowStyles.Add(new RowStyle());
+            tableLayoutPanelQueriesDetails.Size = new Size(869, 567);
+            tableLayoutPanelQueriesDetails.TabIndex = 3;
             // 
-            // label1
+            // labelName
             // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Right;
-            label1.Location = new Point(217, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 30);
-            label1.TabIndex = 0;
-            label1.Text = "Name";
+            labelName.AutoSize = true;
+            labelName.Dock = DockStyle.Right;
+            labelName.Location = new Point(217, 10);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(39, 30);
+            labelName.TabIndex = 0;
+            labelName.Text = "Name";
             // 
-            // label2
+            // labelRunning
             // 
-            label2.AutoSize = true;
-            label2.Dock = DockStyle.Right;
-            label2.Location = new Point(204, 40);
-            label2.Name = "label2";
-            label2.Size = new Size(52, 30);
-            label2.TabIndex = 1;
-            label2.Text = "Running";
+            labelRunning.AutoSize = true;
+            labelRunning.Dock = DockStyle.Right;
+            labelRunning.Location = new Point(204, 40);
+            labelRunning.Name = "labelRunning";
+            labelRunning.Size = new Size(52, 30);
+            labelRunning.TabIndex = 1;
+            labelRunning.Text = "Running";
             // 
-            // label3
+            // labelType
             // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Right;
-            label3.Location = new Point(225, 70);
-            label3.Name = "label3";
-            label3.Size = new Size(31, 30);
-            label3.TabIndex = 2;
-            label3.Text = "Type";
+            labelType.AutoSize = true;
+            labelType.Dock = DockStyle.Right;
+            labelType.Location = new Point(225, 70);
+            labelType.Name = "labelType";
+            labelType.Size = new Size(31, 30);
+            labelType.TabIndex = 2;
+            labelType.Text = "Type";
             // 
-            // label4
+            // labelRepositoryName
             // 
-            label4.AutoSize = true;
-            label4.Dock = DockStyle.Right;
-            label4.Location = new Point(161, 100);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 30);
-            label4.TabIndex = 3;
-            label4.Text = "RepositoryName";
+            labelRepositoryName.AutoSize = true;
+            labelRepositoryName.Dock = DockStyle.Right;
+            labelRepositoryName.Location = new Point(161, 100);
+            labelRepositoryName.Name = "labelRepositoryName";
+            labelRepositoryName.Size = new Size(95, 30);
+            labelRepositoryName.TabIndex = 3;
+            labelRepositoryName.Text = "RepositoryName";
             // 
-            // label5
+            // labelFilters
             // 
-            label5.AutoSize = true;
-            label5.Dock = DockStyle.Right;
-            label5.Location = new Point(218, 130);
-            label5.Name = "label5";
-            label5.Size = new Size(38, 437);
-            label5.TabIndex = 4;
-            label5.Text = "Filters";
+            labelFilters.AutoSize = true;
+            labelFilters.Dock = DockStyle.Right;
+            labelFilters.Location = new Point(218, 130);
+            labelFilters.Name = "labelFilters";
+            labelFilters.Size = new Size(38, 437);
+            labelFilters.TabIndex = 4;
+            labelFilters.Text = "Filters";
             // 
-            // tableLayoutPanel2
+            // tableLayoutPanelQueriesFilters
             // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel2.Controls.Add(dataGridView2, 0, 1);
-            tableLayoutPanel2.Controls.Add(flowLayoutPanel3, 0, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(262, 133);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.Size = new Size(515, 431);
-            tableLayoutPanel2.TabIndex = 5;
+            tableLayoutPanelQueriesFilters.ColumnCount = 1;
+            tableLayoutPanelQueriesFilters.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanelQueriesFilters.Controls.Add(dataGridViewQueriesFilters, 0, 1);
+            tableLayoutPanelQueriesFilters.Controls.Add(flowLayoutPanelQueriesFilters, 0, 0);
+            tableLayoutPanelQueriesFilters.Dock = DockStyle.Fill;
+            tableLayoutPanelQueriesFilters.Location = new Point(262, 133);
+            tableLayoutPanelQueriesFilters.Name = "tableLayoutPanelQueriesFilters";
+            tableLayoutPanelQueriesFilters.RowCount = 2;
+            tableLayoutPanelQueriesFilters.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelQueriesFilters.RowStyles.Add(new RowStyle());
+            tableLayoutPanelQueriesFilters.Size = new Size(515, 431);
+            tableLayoutPanelQueriesFilters.TabIndex = 5;
             // 
-            // flowLayoutPanel3
+            // dataGridViewQueriesFilters
             // 
-            flowLayoutPanel3.Controls.Add(button4);
-            flowLayoutPanel3.Controls.Add(button5);
-            flowLayoutPanel3.Dock = DockStyle.Fill;
-            flowLayoutPanel3.Location = new Point(3, 3);
-            flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(509, 24);
-            flowLayoutPanel3.TabIndex = 2;
+            dataGridViewQueriesFilters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewQueriesFilters.Dock = DockStyle.Fill;
+            dataGridViewQueriesFilters.Location = new Point(3, 33);
+            dataGridViewQueriesFilters.Name = "dataGridViewQueriesFilters";
+            dataGridViewQueriesFilters.Size = new Size(509, 567);
+            dataGridViewQueriesFilters.TabIndex = 3;
             // 
-            // button4
+            // flowLayoutPanelQueriesFilters
             // 
-            button4.Location = new Point(3, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(118, 21);
-            button4.TabIndex = 0;
-            button4.Text = "Add";
-            button4.UseVisualStyleBackColor = true;
+            flowLayoutPanelQueriesFilters.Controls.Add(buttonQueriesFiltersAdd);
+            flowLayoutPanelQueriesFilters.Controls.Add(buttonQueriesFiltersDelete);
+            flowLayoutPanelQueriesFilters.Dock = DockStyle.Fill;
+            flowLayoutPanelQueriesFilters.Location = new Point(3, 3);
+            flowLayoutPanelQueriesFilters.Name = "flowLayoutPanelQueriesFilters";
+            flowLayoutPanelQueriesFilters.Size = new Size(509, 24);
+            flowLayoutPanelQueriesFilters.TabIndex = 2;
             // 
-            // button5
+            // buttonQueriesFiltersAdd
             // 
-            button5.Location = new Point(127, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(118, 21);
-            button5.TabIndex = 1;
-            button5.Text = "Delete";
-            button5.UseVisualStyleBackColor = true;
+            buttonQueriesFiltersAdd.Location = new Point(3, 3);
+            buttonQueriesFiltersAdd.Name = "buttonQueriesFiltersAdd";
+            buttonQueriesFiltersAdd.Size = new Size(118, 21);
+            buttonQueriesFiltersAdd.TabIndex = 0;
+            buttonQueriesFiltersAdd.Text = "Add";
+            buttonQueriesFiltersAdd.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // buttonQueriesFiltersDelete
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Dock = DockStyle.Fill;
-            dataGridView2.Location = new Point(3, 33);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(509, 567);
-            dataGridView2.TabIndex = 3;
+            buttonQueriesFiltersDelete.Location = new Point(127, 3);
+            buttonQueriesFiltersDelete.Name = "buttonQueriesFiltersDelete";
+            buttonQueriesFiltersDelete.Size = new Size(118, 21);
+            buttonQueriesFiltersDelete.TabIndex = 1;
+            buttonQueriesFiltersDelete.Text = "Delete";
+            buttonQueriesFiltersDelete.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxName
             // 
-            textBox1.Dock = DockStyle.Top;
-            textBox1.Location = new Point(262, 13);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(515, 23);
-            textBox1.TabIndex = 6;
+            textBoxName.Dock = DockStyle.Top;
+            textBoxName.Location = new Point(262, 13);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(515, 23);
+            textBoxName.TabIndex = 6;
             // 
-            // textBox2
+            // textBoxRepositoryName
             // 
-            textBox2.Dock = DockStyle.Top;
-            textBox2.Location = new Point(262, 103);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(515, 23);
-            textBox2.TabIndex = 7;
+            textBoxRepositoryName.Dock = DockStyle.Top;
+            textBoxRepositoryName.Location = new Point(262, 103);
+            textBoxRepositoryName.Name = "textBoxRepositoryName";
+            textBoxRepositoryName.Size = new Size(515, 23);
+            textBoxRepositoryName.TabIndex = 7;
             // 
-            // comboBox1
+            // comboBoxType
             // 
-            comboBox1.Dock = DockStyle.Top;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(262, 73);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(515, 23);
-            comboBox1.TabIndex = 8;
+            comboBoxType.Dock = DockStyle.Top;
+            comboBoxType.FormattingEnabled = true;
+            comboBoxType.Location = new Point(262, 73);
+            comboBoxType.Name = "comboBoxType";
+            comboBoxType.Size = new Size(515, 23);
+            comboBoxType.TabIndex = 8;
             // 
-            // checkBox1
+            // checkBoxRunning
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Dock = DockStyle.Top;
-            checkBox1.Location = new Point(262, 43);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(515, 14);
-            checkBox1.TabIndex = 9;
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBoxRunning.AutoSize = true;
+            checkBoxRunning.Dock = DockStyle.Top;
+            checkBoxRunning.Location = new Point(262, 43);
+            checkBoxRunning.Name = "checkBoxRunning";
+            checkBoxRunning.Size = new Size(515, 14);
+            checkBoxRunning.TabIndex = 9;
+            checkBoxRunning.UseVisualStyleBackColor = true;
             // 
             // EditForm
             // 
@@ -491,61 +495,61 @@ namespace CSharp_AzureDevopsNotifier
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             tabControl1.ResumeLayout(false);
-            tabPageAzureDevOpsSettings.ResumeLayout(false);
-            tableLayoutPanelAzureDevOpsSettings.ResumeLayout(false);
-            tableLayoutPanelAzureDevOpsSettings.PerformLayout();
+            tabPageSettings.ResumeLayout(false);
+            tableLayoutPanelSettings.ResumeLayout(false);
+            tableLayoutPanelSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownDelay).EndInit();
             tabPageQueries.ResumeLayout(false);
             tableLayoutPanelQueries.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
-            flowLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            flowLayoutPanelQueriesDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQueries).EndInit();
+            flowLayoutPanelQueries.ResumeLayout(false);
+            tableLayoutPanelQueriesDetails.ResumeLayout(false);
+            tableLayoutPanelQueriesDetails.PerformLayout();
+            tableLayoutPanelQueriesFilters.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQueriesFilters).EndInit();
+            flowLayoutPanelQueriesFilters.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem saveToolStripMenuItem;
-        private TabControl tabControl1;
-        private TabPage tabPageAzureDevOpsSettings;
-        private TabPage tabPageQueries;
-        private TableLayoutPanel tableLayoutPanelQueries;
-        private TableLayoutPanel tableLayoutPanelAzureDevOpsSettings;
-        private Label labelOrganizationUrl;
+        private Button buttonQueriesAdd;
+        private Button buttonQueriesDelete;
+        private Button buttonQueriesDetailsSave;
+        private Button buttonQueriesFiltersAdd;
+        private Button buttonQueriesFiltersDelete;
+        private CheckBox checkBoxRunning;
+        private ComboBox comboBoxType;
+        private DataGridView dataGridViewQueries;
+        private DataGridView dataGridViewQueriesFilters;
+        private FlowLayoutPanel flowLayoutPanelQueries;
+        private FlowLayoutPanel flowLayoutPanelQueriesDetails;
+        private FlowLayoutPanel flowLayoutPanelQueriesFilters;
         private Label labelDelay;
-        private Label labelProjectName;
+        private Label labelFilters;
+        private Label labelName;
+        private Label labelOrganizationUrl;
         private Label labelPersonalAccessToken;
-        private TextBox textBoxOrganizationUrl;
-        private TextBox textBoxProjectName;
-        private TextBox textBoxPersonalAccessToken;
+        private Label labelProjectName;
+        private Label labelRepositoryName;
+        private Label labelRunning;
+        private Label labelType;
+        private MenuStrip menuStrip1;
         private NumericUpDown numericUpDownDelay;
-        private DataGridView dataGridView1;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Button button3;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button button1;
-        private Button button2;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private TableLayoutPanel tableLayoutPanel2;
-        private DataGridView dataGridView2;
-        private FlowLayoutPanel flowLayoutPanel3;
-        private Button button4;
-        private Button button5;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private ComboBox comboBox1;
-        private CheckBox checkBox1;
+        private TabControl tabControl1;
+        private TableLayoutPanel tableLayoutPanelQueries;
+        private TableLayoutPanel tableLayoutPanelQueriesDetails;
+        private TableLayoutPanel tableLayoutPanelQueriesFilters;
+        private TableLayoutPanel tableLayoutPanelSettings;
+        private TabPage tabPageQueries;
+        private TabPage tabPageSettings;
+        private TextBox textBoxName;
+        private TextBox textBoxOrganizationUrl;
+        private TextBox textBoxPersonalAccessToken;
+        private TextBox textBoxProjectName;
+        private TextBox textBoxRepositoryName;
+        private ToolStripMenuItem saveToolStripMenuItem;
     }
 }
