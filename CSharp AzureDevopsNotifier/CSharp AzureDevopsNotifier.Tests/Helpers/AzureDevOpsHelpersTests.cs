@@ -1,14 +1,14 @@
-﻿using CSharp_AzureDevopsNotifier.Helpers;
+﻿using CSharp_AzureDevopsNotifier.Entities;
+using CSharp_AzureDevopsNotifier.Helpers;
 using Microsoft.TeamFoundation.SourceControl.WebApi;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
+using Microsoft.VisualStudio.Services.Common;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Microsoft.VisualStudio.Services.Common;
-using CSharp_AzureDevopsNotifier.Entities;
 
 namespace CSharp_AzureDevopsNotifier.Tests.Helpers
 {
