@@ -1,11 +1,13 @@
 ﻿using CSharp_AzureDevopsNotifier.Entities;
 using CSharp_TrayShortcut.Helpers;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace CSharp_AzureDevopsNotifier.Forms
 {
+    [ExcludeFromCodeCoverage]
     public class TrayApplicationContext : ApplicationContext
     {
         private const string _pathSettings = @"Configurations\AzureDevOpsSettings.json";
@@ -77,7 +79,7 @@ namespace CSharp_AzureDevopsNotifier.Forms
             // Static bottom menus
             contextMenuStrip.Items.AddRange(new ToolStripItem[] {
                 //new ToolStripMenuItem(nameof(Refresh), null, new EventHandler(Refresh)),
-                //new ToolStripMenuItem(nameof(Edit), null, new EventHandler(Edit)),
+                new ToolStripMenuItem(nameof(Edit), null, new EventHandler(Edit)),
                 new ToolStripMenuItem(nameof(Exit), null, new EventHandler(Exit)),
             });
         }
