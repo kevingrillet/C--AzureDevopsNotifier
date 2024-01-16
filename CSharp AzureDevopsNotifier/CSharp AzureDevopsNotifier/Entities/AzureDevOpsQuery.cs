@@ -38,7 +38,6 @@ namespace CSharp_AzureDevopsNotifier.Entities
         /// </value>
         public bool Running { get; set; }
 
-        public string SoundPath { get; set; }
         public AzureDevopsQueryType Type { get; set; }
 
         public AzureDevOpsQuery()
@@ -47,7 +46,6 @@ namespace CSharp_AzureDevopsNotifier.Entities
             Name = string.Empty;
             RepositoryName = string.Empty;
             Running = false;
-            SoundPath = string.Empty;
         }
     }
 }

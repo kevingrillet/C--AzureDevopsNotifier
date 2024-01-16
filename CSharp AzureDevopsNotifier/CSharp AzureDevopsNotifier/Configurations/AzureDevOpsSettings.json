@@ -12,14 +12,12 @@
             ],
             "Name": "Open Bugs",
             "Running": true,
-            "SoundPath": null,
             "Type": 0
         },
         {
             "Name": "PRs",
             "RepositoryName": "RepositoryName",
             "Running": true,
-            "SoundPath": null,
             "Type": 1
         }
     ]
