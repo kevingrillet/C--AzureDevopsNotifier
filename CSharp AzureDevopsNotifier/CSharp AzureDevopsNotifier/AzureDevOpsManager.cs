@@ -1,6 +1,5 @@
 ﻿using CSharp_AzureDevopsNotifier.Entities;
 using CSharp_AzureDevopsNotifier.Helpers;
-using CSharp_TrayShortcut.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@ namespace CSharp_AzureDevopsNotifier
     public class AzureDevOpsManager
     {
         private readonly StorageInfos _storageInfos;
-        private AzureDevOpsClient _AzureDevOpsClient;
+        private AzureDevOpsClient _azureDevOpsClient;
         private bool _running;
         private AzureDevOpsSettings _settings;
 
@@ -50,7 +49,7 @@ namespace CSharp_AzureDevopsNotifier
         public void Update(AzureDevOpsSettings azureDevOpsSettings)
         {
             _settings = azureDevOpsSettings ?? JsonHelpers<AzureDevOpsSettings>.Load(@"Configurations/AzureDevOpsSettings.json");
-            _AzureDevOpsClient = new AzureDevOpsClient(_settings);
+            _azureDevOpsClient = new AzureDevOpsClient(_settings);
             _running = false;
         }
 
@@ -58,7 +57,7 @@ namespace CSharp_AzureDevopsNotifier
         {
             foreach (var query in _settings.Queries.Where(q => q.Running && q.Type == AzureDevopsQueryType.Git))
             {
-                var prs = AzureDevOpsHelpers.GetNewPullRequests(_AzureDevOpsClient.GetGitClient(), _settings.ProjectName, query.RepositoryName);
+                var prs = AzureDevOpsHelpers.GetNewPullRequests(_azureDevOpsClient.GetGitClient(), _settings.ProjectName, query.RepositoryName);
                 AzureDevOpsHelpers.DisplayNewItems(prs, _storageInfos.DisplayedPrIds, _settings, query);
             }
         }
@@ -67,7 +66,7 @@ namespace CSharp_AzureDevopsNotifier
         {
             foreach (var query in _settings.Queries.Where(q => q.Running && q.Type == AzureDevopsQueryType.WorkItem))
             {
-                var workItems = AzureDevOpsHelpers.GetWorkItems(_AzureDevOpsClient.GetWorkItemClient(), query.Filters);
+                var workItems = AzureDevOpsHelpers.GetWorkItems(_azureDevOpsClient.GetWorkItemClient(), query.Filters);
                 AzureDevOpsHelpers.DisplayNewItems(workItems, _storageInfos.DisplayedWorkItemsIds, _settings);
             }
         }

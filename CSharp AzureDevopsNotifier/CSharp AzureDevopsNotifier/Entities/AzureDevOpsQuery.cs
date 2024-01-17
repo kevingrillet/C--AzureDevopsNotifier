@@ -46,6 +46,7 @@ namespace CSharp_AzureDevopsNotifier.Entities
             Name = string.Empty;
             RepositoryName = string.Empty;
             Running = false;
+            Type = AzureDevopsQueryType.WorkItem;
         }
     }
 }

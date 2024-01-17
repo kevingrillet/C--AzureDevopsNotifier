@@ -1,23 +1,34 @@
 using CSharp_AzureDevopsNotifier.Forms;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace CSharp_AzureDevopsNotifier
 {
+    [ExcludeFromCodeCoverage]
     internal static class Program
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0063:Utiliser une instruction 'using' simple", Justification = "<En attente>")]
-        private static void CatchException
-            (object sender, ThreadExceptionEventArgs e)
+        private static void CatchException(object sender, ThreadExceptionEventArgs e)
         {
             try
             {
-                using (StreamWriter sw = new("crash-" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-ss") + ".txt"))
+                string crashLogFileName = $"crash-{DateTime.UtcNow:yyyy-MM-ddTHH-mm-ss}.txt";
+                using StreamWriter sw = new(crashLogFileName);
+                Exception ex = e.Exception;
+                sw.WriteLine($"{ex.Message}{ex.StackTrace}");
+                if (ex.InnerException != null)
                 {
-                    Exception ex = e.Exception;
-                    sw.WriteLine(ex.Message + ex.StackTrace);
+                    sw.WriteLine($"Inner Exception: {ex.InnerException.Message}{ex.InnerException.StackTrace}");
+                }
+                if (ex.Data.Count > 0)
+                {
+                    sw.WriteLine("Additional Data:");
+                    foreach (var key in ex.Data.Keys)
+                    {
+                        sw.WriteLine($"{key}: {ex.Data[key]}");
+                    }
                 }
             }
             finally
@@ -27,7 +38,7 @@ namespace CSharp_AzureDevopsNotifier
         }
 
         /// <summary>
-        ///  The main entry point for the application.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
         private static void Main()

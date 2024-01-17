@@ -1,5 +1,5 @@
 using CSharp_AzureDevopsNotifier.Entities;
-using CSharp_TrayShortcut.Helpers;
+using CSharp_AzureDevopsNotifier.Helpers;
 using System;
 using System.ComponentModel;
 using System.Linq;

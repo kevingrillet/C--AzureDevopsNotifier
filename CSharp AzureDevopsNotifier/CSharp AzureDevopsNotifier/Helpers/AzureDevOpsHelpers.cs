@@ -28,15 +28,17 @@ namespace CSharp_AzureDevopsNotifier.Helpers
             {
                 int itemId = GetItemId(item);
 
-                if (!displayedItemIds.Contains(itemId))
+                if (displayedItemIds.Contains(itemId))
                 {
-                    string itemName = GetItemName(item);
-                    string itemUrl = GetItemUrl(item, settings, query);
-
-                    ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", itemName, itemUrl);
-
-                    displayedItemIds.Add(itemId);
+                    continue;
                 }
+
+                string itemName = GetItemName(item);
+                string itemUrl = GetItemUrl(item, settings, query);
+
+                ToastHelpers.ShowToastNotification($"New {typeof(TType).Name}", itemName, itemUrl);
+
+                displayedItemIds.Add(itemId);
             }
         }
 
